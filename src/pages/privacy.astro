@@ -1,0 +1,142 @@
+---
+import LegalLayout from '../components/LegalLayout.astro';
+
+const COMPANY = 'Luminate Energy LLC';
+const SUPPORT_EMAIL = 'adamsuchy@luminate.solar';
+---
+
+<LegalLayout
+  title="Privacy Policy — 365"
+  description="How 365, operated by Luminate Energy LLC, collects, uses, and protects information."
+  eyebrow="Privacy"
+  eyebrowNumber="01"
+  heading="Privacy"
+  headingAccent="policy."
+  lastUpdated="May 22, 2026"
+>
+  <p>
+    {COMPANY} (&ldquo;365,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) provides the 365
+    mobile and web application for solar sales, installation, and operations teams.
+    This policy describes what information we collect through 365, how we use it, and
+    the choices you have. It is written to align with the categories used in
+    Apple&rsquo;s App Privacy questionnaire so that disclosures across the App Store,
+    Google Play, and this page stay consistent.
+  </p>
+
+  <h2>1. Contact Info</h2>
+  <p>
+    When you sign in we collect your <strong>email address</strong> and
+    <strong> name</strong> from your identity provider (Google or Apple). If you sign
+    in with Apple and choose to hide your email, we receive only the private relay
+    address Apple generates for you.
+  </p>
+
+  <h2>2. Identifiers</h2>
+  <p>
+    We assign each account a user ID and store your <strong>role</strong> (sales rep,
+    crew lead, operations officer, dealer, financier, admin) and your
+    <strong> organization or installer affiliation</strong>. These are required to
+    scope what records you can see inside the app.
+  </p>
+
+  <h2>3. User Content</h2>
+  <p>
+    Crew leads, installers, and operations users may upload
+    <strong> installation photos, signed documents, and job notes</strong>. These are
+    stored in our Supabase Storage <code>uploads</code> bucket and are visible only to
+    other authenticated users at the same organization who have permission to view the
+    associated job.
+  </p>
+
+  <h2>4. Usage Data &amp; Diagnostics</h2>
+  <p>
+    We log basic application events (page views, sign-in success/failure, errors) so
+    we can debug the app and improve it. These logs are not sold or shared with
+    advertisers.
+  </p>
+
+  <h2>5. Push Notification Tokens</h2>
+  <p>
+    If you enable notifications, we store the push token issued to your device by:
+  </p>
+  <ul>
+    <li>Apple Push Notification service (APNs) on iOS,</li>
+    <li>Firebase Cloud Messaging (FCM) on Android, and</li>
+    <li>Web Push (VAPID) in browsers.</li>
+  </ul>
+  <p>
+    Tokens are used solely to deliver in-app notifications (new leads, job updates,
+    commission events). You can revoke notifications at any time in your device
+    settings, and the token will be removed from our records on next sign-in.
+  </p>
+
+  <h2>6. Location (Future Feature)</h2>
+  <p>
+    A future version of 365 will support <strong>optional background location</strong>
+    for crew leads on active installation routes (drive-time tracking, on-site
+    check-in). This feature is not enabled in the current release. When it ships, it
+    will be opt-in, will display the standard iOS &ldquo;Always Allow&rdquo; prompt
+    with a clear purpose string, and will only collect location while a job is active.
+    We disclose it here in advance to set accurate expectations.
+  </p>
+
+  <h2>7. How We Use Your Data</h2>
+  <ul>
+    <li>Authenticate you and route you to the correct dashboard for your role.</li>
+    <li>Display jobs, commissions, leads, and team information for your organization.</li>
+    <li>Send notifications you have opted into.</li>
+    <li>Diagnose errors and improve the app.</li>
+  </ul>
+  <p>
+    We do <strong>not</strong> sell your personal data, share it with advertisers, or
+    use it for ad targeting.
+  </p>
+
+  <h2>8. Service Providers</h2>
+  <p>
+    We rely on the following third parties as processors. Each is bound by their own
+    privacy commitments:
+  </p>
+  <ul>
+    <li><strong>Supabase</strong> &mdash; authentication, database, file storage.</li>
+    <li><strong>Vercel</strong> &mdash; web hosting.</li>
+    <li><strong>Google &amp; Apple</strong> &mdash; sign-in providers.</li>
+    <li><strong>Resend</strong> &mdash; transactional email (invites).</li>
+    <li><strong>Apple APNs, Google FCM, Web Push</strong> &mdash; notification delivery.</li>
+  </ul>
+
+  <h2>9. Data Retention</h2>
+  <p>
+    We keep account data for as long as your account is active. If you request account
+    deletion (see Section 11) we remove your profile, uploaded content, and push
+    tokens within 30 days, subject to any records we are required to retain for
+    commission, tax, or legal purposes.
+  </p>
+
+  <h2>10. Children</h2>
+  <p>
+    365 is a workforce app intended for users 18 years or older. We do not knowingly
+    collect data from anyone under 13.
+  </p>
+
+  <h2>11. Your Rights &amp; Account Deletion</h2>
+  <p>
+    You can request access to, correction of, or deletion of your personal data by
+    emailing <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
+    Users in California, the EEA, or the UK have additional rights under CCPA / GDPR;
+    we honor those requests on the same channel.
+  </p>
+
+  <h2>12. Changes to This Policy</h2>
+  <p>
+    We may update this policy as the app evolves. The &ldquo;Effective&rdquo; date at
+    the top reflects the most recent revision. Material changes will be announced
+    inside the app.
+  </p>
+
+  <h2>13. Contact</h2>
+  <p>
+    {COMPANY}<br />
+    <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+  </p>
+</LegalLayout>

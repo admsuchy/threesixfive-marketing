@@ -1,0 +1,98 @@
+---
+import Logo from './Logo.astro';
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const navLinks = [
+  { href: '/#for-sales', label: 'For Sales' },
+  { href: '/#for-install', label: 'For Install' },
+  { href: '/#for-ops', label: 'For Ops' },
+  { href: '/support/', label: 'Support' },
+];
+
+function isActive(href: string) {
+  if (href.startsWith('/#')) return false;
+  const normalized = href.replace(/\/$/, '') || '/';
+  return currentPath === normalized;
+}
+---
+
+<header class="sticky top-0 z-50 backdrop-blur-md bg-brand-paper/70 hairline-bottom">
+  <div class="container-prose flex items-center justify-between h-16 md:h-20">
+    <Logo />
+
+    <nav class="hidden md:flex items-center gap-8" aria-label="Primary">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'text-sm font-medium transition-colors',
+            isActive(link.href)
+              ? 'text-brand-ink'
+              : 'text-brand-muted hover:text-brand-ink',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/#get-the-app"
+        class="inline-flex items-center justify-center rounded-full bg-brand-primary text-black px-5 py-2 text-sm font-semibold hover:bg-brand-primaryDark hover:text-white transition-colors"
+      >
+        Get the app
+      </a>
+    </nav>
+
+    <button
+      id="nav-toggle"
+      type="button"
+      class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-brand-surface transition-colors text-brand-ink"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="7" x2="21" y2="7"></line>
+        <line x1="3" y1="17" x2="21" y2="17"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="mobile-nav"
+    class="hidden md:hidden border-t border-brand-line bg-brand-paper/95 backdrop-blur"
+  >
+    <nav class="container-prose py-4 flex flex-col gap-1" aria-label="Mobile">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'py-3 text-base font-medium',
+            isActive(link.href) ? 'text-brand-ink' : 'text-brand-muted',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/#get-the-app"
+        class="mt-2 inline-flex items-center justify-center rounded-full bg-brand-primary text-black px-5 py-3 text-sm font-semibold"
+      >
+        Get the app
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-nav');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = !menu.classList.contains('hidden');
+      menu.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    });
+  }
+</script>

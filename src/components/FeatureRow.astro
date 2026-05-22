@@ -1,0 +1,25 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  label?: string;
+  index?: number;
+}
+const { title, description, label, index = 0 } = Astro.props;
+const num = String(index + 1).padStart(2, '0');
+---
+
+<div class="group py-8 md:py-10 border-t border-brand-line first:border-t-0">
+  <div class="flex items-baseline justify-between mb-3 md:mb-4">
+    <span class="text-xs uppercase tracking-[0.22em] text-brand-primary font-medium">
+      {label ?? 'Feature'}
+    </span>
+    <span class="text-xs font-mono text-brand-subtle tabular-nums">{num}</span>
+  </div>
+  <h3 class="text-2xl md:text-3xl mb-3 text-brand-ink group-hover:text-brand-primary transition-colors">
+    {title}
+  </h3>
+  <p class="text-base md:text-lg text-brand-muted leading-relaxed max-w-2xl">
+    {description}
+  </p>
+</div>

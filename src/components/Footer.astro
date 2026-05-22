@@ -1,0 +1,64 @@
+---
+import Logo from './Logo.astro';
+const year = new Date().getFullYear();
+---
+
+<footer class="hairline-top bg-brand-paper/80 backdrop-blur">
+  <div class="container-prose py-16 md:py-20 grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <div class="space-y-4 max-w-sm">
+      <Logo />
+      <p class="text-sm text-brand-muted leading-relaxed">
+        The all-in-one workforce app for residential solar &mdash; commissions,
+        jobs, dashboards, and team recruiting in one place.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="text-xs uppercase tracking-widest text-brand-subtle mb-4 font-medium">Product</h4>
+      <ul class="space-y-3 text-sm">
+        <li><a href="/" class="text-brand-muted hover:text-brand-primary transition-colors">Home</a></li>
+        <li><a href="/#for-sales" class="text-brand-muted hover:text-brand-primary transition-colors">For Sales</a></li>
+        <li><a href="/#for-install" class="text-brand-muted hover:text-brand-primary transition-colors">For Install</a></li>
+        <li><a href="/#for-ops" class="text-brand-muted hover:text-brand-primary transition-colors">For Operations</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-xs uppercase tracking-widest text-brand-subtle mb-4 font-medium">Help</h4>
+      <ul class="space-y-3 text-sm">
+        <li><a href="/support/" class="text-brand-muted hover:text-brand-primary transition-colors">Support</a></li>
+        <li>
+          <a
+            href="mailto:adamsuchy@luminate.solar"
+            class="text-brand-muted hover:text-brand-primary transition-colors"
+          >adamsuchy@luminate.solar</a>
+        </li>
+        <li>
+          <a
+            href="https://threesixfive.app"
+            class="text-brand-muted hover:text-brand-primary transition-colors"
+          >Sign in</a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-xs uppercase tracking-widest text-brand-subtle mb-4 font-medium">Legal</h4>
+      <ul class="space-y-3 text-sm">
+        <li><a href="/privacy/" class="text-brand-muted hover:text-brand-primary transition-colors">Privacy</a></li>
+        <li><a href="/terms/" class="text-brand-muted hover:text-brand-primary transition-colors">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="hairline-top">
+    <div class="container-prose py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-brand-subtle">
+      <p>&copy; {year} Luminate Energy LLC. All rights reserved.</p>
+      <nav class="flex items-center gap-5" aria-label="Legal">
+        <a href="/privacy/" class="hover:text-brand-primary transition-colors">Privacy</a>
+        <a href="/terms/" class="hover:text-brand-primary transition-colors">Terms</a>
+        <a href="/support/" class="hover:text-brand-primary transition-colors">Support</a>
+      </nav>
+    </div>
+  </div>
+</footer>

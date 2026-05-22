@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionEyebrow from './SectionEyebrow.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  eyebrowNumber?: string;
+  heading: string;
+  headingAccent?: string;
+  lastUpdated: string;
+}
+
+const {
+  title,
+  description,
+  eyebrow,
+  eyebrowNumber = '01',
+  heading,
+  headingAccent,
+  lastUpdated,
+} = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <section class="container-prose pt-20 md:pt-32 pb-12 md:pb-16">
+    <SectionEyebrow label={eyebrow} number={eyebrowNumber} />
+    <h1 class="display-xl text-5xl md:text-6xl lg:text-7xl max-w-4xl mb-6 md:mb-8 text-brand-ink">
+      {heading}
+      {headingAccent && <span class="accent-cursive text-brand-primary text-[1.15em] align-baseline ml-2">{headingAccent}</span>}
+    </h1>
+    <p class="text-sm md:text-base text-brand-subtle">Effective {lastUpdated}</p>
+  </section>
+
+  <section class="hairline-top">
+    <div class="container-prose py-12 md:py-20">
+      <article class="prose prose-invert max-w-3xl mx-auto text-base md:text-lg leading-relaxed text-brand-muted [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:text-brand-ink [&_h3]:text-lg [&_h3]:md:text-xl [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:font-bold [&_h3]:text-brand-ink [&_p]:mb-5 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-5 [&_ul]:space-y-2 [&_li]:leading-relaxed [&_a]:text-brand-primary [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-brand-primaryDark [&_strong]:font-semibold [&_strong]:text-brand-ink [&_code]:text-brand-primary [&_code]:bg-brand-surface [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded">
+        <slot />
+      </article>
+    </div>
+  </section>
+</Layout>

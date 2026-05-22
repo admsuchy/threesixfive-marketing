@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+
+const COMPANY = 'Luminate Energy LLC';
+const SUPPORT_EMAIL = 'adamsuchy@luminate.solar';
+
+const faq = [
+  {
+    q: 'How do I sign in?',
+    a: 'Tap "Log In" on the welcome screen and pick Google or Apple. Your administrator must invite you first; if you do not yet have an account, ask your team lead to send an invite.',
+  },
+  {
+    q: 'I was invited but the link does not work.',
+    a: 'Invite links expire after 7 days. Ask whoever invited you to resend it, or email support and we can issue a new one.',
+  },
+  {
+    q: 'How do I enable push notifications?',
+    a: 'On iOS and Android, accept the notification prompt the first time you sign in, or enable notifications later under Settings > Notifications. On web, your browser will prompt you when you first visit a page that uses them.',
+  },
+  {
+    q: 'How do I delete my account?',
+    a: `Email ${SUPPORT_EMAIL} from the address on your account and we will remove your profile, uploaded content, and push tokens within 30 days.`,
+  },
+  {
+    q: 'I am a crew lead / installer. Where do my jobs live?',
+    a: 'After sign-in you will land on the Installer Dashboard, which lists active jobs assigned to you. Tap a job to see the photo checklist, signed documents, and pay details.',
+  },
+  {
+    q: 'Where can I see the privacy policy and terms?',
+    a: 'They are linked in the footer of this site and from the welcome screen of the app.',
+  },
+];
+
+const mailIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`;
+const chatIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`;
+const appleIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>`;
+const androidIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.39.39 0 0 0-.14-.54.39.39 0 0 0-.53.14L16.91 9.1a10.55 10.55 0 0 0-9.82 0L5.23 5.9a.39.39 0 0 0-.53-.14.39.39 0 0 0-.14.54L6.4 9.48A10.47 10.47 0 0 0 1 18h22a10.47 10.47 0 0 0-5.4-8.52zM7 15.25a1 1 0 1 1 1-1 1 1 0 0 1-1 1zm10 0a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/></svg>`;
+---
+
+<Layout
+  title="Support — 365"
+  description="Help and FAQ for the 365 app, operated by Luminate Energy LLC."
+>
+  <section class="container-prose pt-20 md:pt-32 pb-12 md:pb-16">
+    <SectionEyebrow label="Support" number="03" />
+    <h1 class="display-xl text-5xl md:text-6xl lg:text-7xl max-w-4xl mb-6 md:mb-8 text-brand-ink">
+      How can we <span class="accent-cursive text-brand-primary text-[1.15em]">help?</span>
+    </h1>
+    <p class="text-base md:text-lg text-brand-muted max-w-2xl">
+      Help for the 365 app, operated by {COMPANY}.
+    </p>
+  </section>
+
+  <section class="hairline-top">
+    <div class="container-prose py-12 md:py-20 space-y-12 md:space-y-16">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-brand-ink mb-6">Get in touch</h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <a
+            href={`mailto:${SUPPORT_EMAIL}`}
+            class="flex items-start gap-3 p-5 rounded-2xl border border-brand-line bg-brand-surface/60 hover:border-brand-primary transition-colors"
+          >
+            <span class="text-brand-primary flex-shrink-0 mt-1"><Fragment set:html={mailIcon} /></span>
+            <div>
+              <p class="text-brand-ink font-medium">Email</p>
+              <p class="text-sm text-brand-muted">{SUPPORT_EMAIL}</p>
+              <p class="text-xs text-brand-subtle mt-1">Typical reply within 1 business day.</p>
+            </div>
+          </a>
+          <div class="flex items-start gap-3 p-5 rounded-2xl border border-brand-line bg-brand-surface/60">
+            <span class="text-brand-primary flex-shrink-0 mt-1"><Fragment set:html={chatIcon} /></span>
+            <div>
+              <p class="text-brand-ink font-medium">In-app</p>
+              <p class="text-sm text-brand-muted">
+                Once signed in, open Settings &gt; Help to send a diagnostic-attached
+                message.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-brand-ink mb-6">Platforms</h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="flex items-start gap-3 p-5 rounded-2xl border border-brand-line bg-brand-surface/60">
+            <span class="text-brand-primary flex-shrink-0 mt-1"><Fragment set:html={appleIcon} /></span>
+            <div>
+              <p class="text-brand-ink font-medium">iOS</p>
+              <p class="text-sm text-brand-muted">iPhone &amp; iPad, iOS 16 and later.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-5 rounded-2xl border border-brand-line bg-brand-surface/60">
+            <span class="text-brand-primary flex-shrink-0 mt-1"><Fragment set:html={androidIcon} /></span>
+            <div>
+              <p class="text-brand-ink font-medium">Android &amp; Web</p>
+              <p class="text-sm text-brand-muted">
+                Android 9 and later, plus modern desktop and mobile browsers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-brand-ink mb-6">Frequently asked questions</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <div class="p-5 rounded-2xl border border-brand-line bg-brand-surface/60">
+              <p class="text-brand-ink font-medium mb-2">{item.q}</p>
+              <p class="text-sm text-brand-muted leading-relaxed">{item.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

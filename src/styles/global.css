@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-primary: #F97316;
+    --brand-primary-dark: #EA580C;
+    --brand-ink: #FAFAFA;
+    --brand-paper: #09090B;
+    --brand-surface: #18181B;
+    --brand-surface-alt: #27272A;
+    --brand-muted: #A1A1AA;
+    --brand-subtle: #71717A;
+    --brand-line: #27272A;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background-color: var(--brand-paper);
+    color: var(--brand-ink);
+  }
+
+  body {
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(249, 115, 22, 0.10), transparent 60%),
+      linear-gradient(to bottom, #000000 0%, #09090B 30%, #18181B 100%);
+    background-attachment: fixed;
+    color: var(--brand-ink);
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+    color: var(--brand-ink);
+  }
+
+  ::selection {
+    background-color: var(--brand-primary);
+    color: #000;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .display-xl {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.055em;
+    line-height: 0.95;
+  }
+
+  .accent-cursive {
+    font-family: 'Great Vibes', 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .container-prose {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-prose {
+      padding-inline: 3rem;
+    }
+  }
+
+  .hairline-top {
+    border-top: 1px solid var(--brand-line);
+  }
+
+  .hairline-bottom {
+    border-bottom: 1px solid var(--brand-line);
+  }
+
+  .badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid var(--brand-line);
+    background-color: rgba(24, 24, 27, 0.6);
+    font-size: 0.75rem;
+    color: var(--brand-muted);
+  }
+}

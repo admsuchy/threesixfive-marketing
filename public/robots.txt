@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://threesixfive.site/sitemap.xml
