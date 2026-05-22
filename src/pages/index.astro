@@ -2,52 +2,53 @@
 import Layout from '../layouts/Layout.astro';
 import CTAButton from '../components/CTAButton.astro';
 import SectionEyebrow from '../components/SectionEyebrow.astro';
-import PersonaCard from '../components/PersonaCard.astro';
-import FeatureRow from '../components/FeatureRow.astro';
+import MockupFrame from '../components/mockups/MockupFrame.astro';
+import KPICard from '../components/mockups/KPICard.astro';
+import BarChart from '../components/mockups/BarChart.astro';
+import CommissionRow from '../components/mockups/CommissionRow.astro';
+import JobCard from '../components/mockups/JobCard.astro';
+import PhotoChecklist from '../components/mockups/PhotoChecklist.astro';
 
-// Icons (inline SVG strings, kept small for tree-shake & dark-bg friendly).
-const personaIcons = {
-  sales: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
-  install: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/><path d="M9 21V12h6v9"/></svg>`,
-  ops: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
-};
+const earningsBars = [
+  { label: 'JAN', value: 8 },
+  { label: 'FEB', value: 14 },
+  { label: 'MAR', value: 11 },
+  { label: 'APR', value: 17 },
+  { label: 'MAY', value: 22 },
+  { label: 'JUN', value: 19 },
+];
 
-const features = [
+const homePhotos = [
+  { label: 'Roof', done: true },
+  { label: 'Panel', done: true },
+  { label: 'Attic', done: true },
+  { label: 'Mount', done: false },
+];
+
+const highlights = [
   {
-    label: 'Earnings',
+    tag: 'Sales',
     title: 'Real-time commissions',
-    description:
-      'See exactly where every deal stands, what you’ve earned, and what’s pending. No more waiting for payroll to find out.',
+    body: 'Every deal, every dollar, every status — synced the moment it changes.',
+    href: '/sales/',
   },
   {
-    label: 'Field',
-    title: 'Install jobs with built-in camera',
-    description:
-      'Crew leads work install jobs from a single screen — open the job, snap required progress photos with the built-in camera, mark steps complete, hand off to the next stage.',
+    tag: 'Install',
+    title: 'Required-photo checklists',
+    body: 'Native camera, offline-safe, photos auto-tagged to the job.',
+    href: '/install/',
   },
   {
-    label: 'Growth',
+    tag: 'Sales',
     title: 'Team recruiting',
-    description:
-      'Invite reps with a personal invite link, see who joined from where, and onboard new hires through a guided flow built right into the app.',
+    body: 'Personal invite links, guided onboarding, and conversion analytics.',
+    href: '/sales/',
   },
   {
-    label: 'Operations',
-    title: 'A dashboard for every role',
-    description:
-      'Sales, install, and operations each see the home screen built for their job — with role-based access so the right person sees the right thing.',
-  },
-  {
-    label: 'Goals',
-    title: 'Goals and progress tracking',
-    description:
-      'Set personal sales targets, watch your team’s progress, and stay accountable without micromanagement.',
-  },
-  {
-    label: 'Training',
-    title: 'Training Studio',
-    description:
-      'Push training content, scripts, and SOPs to your team. New reps ramp faster; veterans stay sharp.',
+    tag: 'Install',
+    title: 'Operations dashboard',
+    body: 'Active jobs, payroll, and org hierarchy — all role-aware.',
+    href: '/install/',
   },
 ];
 ---
@@ -116,115 +117,171 @@ const features = [
     </div>
   </section>
 
-  <!-- WHO IT'S FOR -->
-  <section class="container-prose py-20 md:py-32">
+  <!-- TWO BIG PERSONA CARDS -->
+  <section class="container-prose py-20 md:py-28">
     <div class="max-w-3xl mb-12 md:mb-16">
       <SectionEyebrow label="Who it's for" number="01" />
       <h2 class="text-4xl md:text-5xl lg:text-6xl mb-6 text-brand-ink">
-        One app. <span class="accent-cursive text-brand-primary text-[1.15em]">every role.</span>
+        Pick your <span class="accent-cursive text-brand-primary text-[1.15em]">side of the team.</span>
       </h2>
       <p class="text-base md:text-lg text-brand-muted leading-relaxed">
-        365 brings sales, install, and operations onto the same platform —
-        each with a home screen designed for their day.
+        Two home screens. One platform. Each role gets the app built for
+        their day — and dives deeper from here.
       </p>
     </div>
 
-    <div class="grid gap-6 md:grid-cols-3" id="for-sales">
-      <PersonaCard
-        role="Sales reps"
-        headline="Commissions in real time."
-        description="See every deal, every commission, and every recruit on one screen."
-        bullets={[
-          'Track commissions as deals progress',
-          'Set and beat personal sales goals',
-          'Invite teammates with a personal link',
-        ]}
-        icon={personaIcons.sales}
-        index={0}
-      />
-      <div id="for-install" class="contents">
-        <PersonaCard
-          role="Crew leads & installers"
-          headline="Jobs from your pocket."
-          description="Open a job, snap required progress photos, mark steps done, hand off."
-          bullets={[
-            'Built-in camera with required-photo checklists',
-            'Job notes, signed documents, and pay details',
-            'Push notifications when something changes',
-          ]}
-          icon={personaIcons.install}
-          index={1}
-        />
-      </div>
-      <div id="for-ops" class="contents">
-        <PersonaCard
-          role="Operations"
-          headline="The whole business, at a glance."
-          description="Every job, every crew, every blocker — with role-based access baked in."
-          bullets={[
-            'Top-down dashboards and payroll',
-            'Org hierarchy and permissions',
-            'Lead management and training studio',
-          ]}
-          icon={personaIcons.ops}
-          index={2}
-        />
-      </div>
-    </div>
-  </section>
+    <div class="grid gap-6 md:grid-cols-2">
+      <!-- For Sales -->
+      <a
+        href="/sales/"
+        class="group relative p-6 md:p-8 border border-brand-line rounded-3xl bg-brand-surface/60 hover:bg-brand-surface hover:border-brand-primary/60 transition-all duration-300 flex flex-col"
+      >
+        <div class="flex items-start justify-between mb-6">
+          <p class="text-xs uppercase tracking-[0.22em] text-brand-primary font-medium">For Sales</p>
+          <span class="text-xs font-mono text-brand-subtle tabular-nums">01</span>
+        </div>
+        <h3 class="text-3xl md:text-4xl mb-3 text-brand-ink">
+          Track every commission. <span class="accent-cursive text-brand-primary text-[1.15em]">Beat every goal.</span>
+        </h3>
+        <ul class="mt-2 mb-6 space-y-2 text-sm text-brand-muted">
+          <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Real-time commission tracking on every deal</span></li>
+          <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Adaptive goals that update as deals close</span></li>
+          <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Personal invite links + onboarding for new reps</span></li>
+        </ul>
 
-  <!-- FEATURE GRID -->
-  <section class="hairline-top">
-    <div class="container-prose py-20 md:py-32">
-      <div class="grid md:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-start">
-        <div class="md:sticky md:top-28">
-          <SectionEyebrow label="What you get" number="02" />
-          <h2 class="text-4xl md:text-5xl lg:text-6xl mb-6 text-brand-ink">
-            Replace the patchwork
-            <span class="accent-cursive text-brand-primary text-[1.15em]">of spreadsheets.</span>
-          </h2>
-          <p class="text-base md:text-lg text-brand-muted leading-relaxed max-w-md">
-            365 collapses the group chats, clipboard forms, and
-            spreadsheet wars most installers run on today.
+        <div class="mt-auto pt-2">
+          <div class="rounded-2xl border border-brand-line bg-brand-paper/60 p-4">
+            <MockupFrame title="Commissions" subtitle="June 2026" size="sm" showBattery={false}>
+              <div class="grid grid-cols-2 gap-1.5">
+                <KPICard label="Month" value="$12.4k" trend="24%" accent size="sm" />
+                <KPICard label="Lifetime" value="$184k" size="sm" />
+              </div>
+              <div class="space-y-1.5">
+                <CommissionRow customer="Hernandez, J." amount="$4,225" status="paid" />
+                <CommissionRow customer="Patel, R." amount="$3,100" status="pending" />
+              </div>
+            </MockupFrame>
+          </div>
+          <p class="mt-5 text-sm font-medium text-brand-primary group-hover:underline underline-offset-4">
+            Explore for sales &rarr;
           </p>
         </div>
+      </a>
 
-        <div class="space-y-px">
-          {features.map((f, i) => (
-            <FeatureRow label={f.label} title={f.title} description={f.description} index={i} />
-          ))}
+      <!-- For Install -->
+      <a
+        href="/install/"
+        class="group relative p-6 md:p-8 border border-brand-line rounded-3xl bg-brand-surface/60 hover:bg-brand-surface hover:border-brand-primary/60 transition-all duration-300 flex flex-col"
+      >
+        <div class="flex items-start justify-between mb-6">
+          <p class="text-xs uppercase tracking-[0.22em] text-brand-primary font-medium">For Install &amp; Ops</p>
+          <span class="text-xs font-mono text-brand-subtle tabular-nums">02</span>
         </div>
+        <h3 class="text-3xl md:text-4xl mb-3 text-brand-ink">
+          Run install jobs. <span class="accent-cursive text-brand-primary text-[1.15em]">Lead the field.</span>
+        </h3>
+        <ul class="mt-2 mb-6 space-y-2 text-sm text-brand-muted">
+          <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Required-photo checklists with native camera</span></li>
+          <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Live job status from open to paid</span></li>
+          <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Operations dashboard + payroll, no spreadsheets</span></li>
+        </ul>
+
+        <div class="mt-auto pt-2">
+          <div class="rounded-2xl border border-brand-line bg-brand-paper/60 p-4">
+            <MockupFrame title="Job · Hernandez" subtitle="8.45 kW" size="sm" showBattery={false}>
+              <PhotoChecklist title="Required" items={homePhotos} columns={2} />
+            </MockupFrame>
+          </div>
+          <p class="mt-5 text-sm font-medium text-brand-primary group-hover:underline underline-offset-4">
+            Explore for install &amp; ops &rarr;
+          </p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 4-FEATURE HIGHLIGHT STRIP -->
+  <section class="hairline-top">
+    <div class="container-prose py-20 md:py-28">
+      <div class="max-w-3xl mb-12 md:mb-16">
+        <SectionEyebrow label="What you get" number="02" />
+        <h2 class="text-4xl md:text-5xl lg:text-6xl text-brand-ink">
+          Replace the patchwork <span class="accent-cursive text-brand-primary text-[1.15em]">of spreadsheets.</span>
+        </h2>
+      </div>
+
+      <div class="grid gap-px bg-brand-line rounded-2xl overflow-hidden md:grid-cols-4 border border-brand-line">
+        {highlights.map((h) => (
+          <a
+            href={h.href}
+            class="group bg-brand-surface/60 hover:bg-brand-surface p-6 md:p-7 transition-colors flex flex-col"
+          >
+            <p class="text-[10px] uppercase tracking-[0.22em] text-brand-primary font-medium mb-4">{h.tag}</p>
+            <h3 class="text-xl md:text-2xl mb-3 text-brand-ink group-hover:text-brand-primary transition-colors leading-snug">
+              {h.title}
+            </h3>
+            <p class="text-sm text-brand-muted leading-relaxed mb-4">{h.body}</p>
+            <p class="mt-auto text-xs font-medium text-brand-subtle group-hover:text-brand-primary transition-colors">
+              {h.tag === 'Sales' ? 'See on /sales' : 'See on /install'} &rarr;
+            </p>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- SCREENSHOTS / PREVIEW PLACEHOLDER -->
+  <!-- MOCKUP TEASER STRIP -->
   <section class="hairline-top">
-    <div class="container-prose py-20 md:py-32">
-      <SectionEyebrow label="On your phone" number="03" />
+    <div class="container-prose py-20 md:py-28">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
-        <h2 class="text-4xl md:text-5xl lg:text-6xl max-w-2xl text-brand-ink">
-          A home screen for <span class="accent-cursive text-brand-primary text-[1.15em]">every role.</span>
-        </h2>
+        <div class="max-w-2xl">
+          <SectionEyebrow label="On your phone" number="03" />
+          <h2 class="text-4xl md:text-5xl lg:text-6xl text-brand-ink">
+            A home screen for <span class="accent-cursive text-brand-primary text-[1.15em]">every role.</span>
+          </h2>
+        </div>
         <p class="text-sm text-brand-subtle max-w-sm">
-          Real product screenshots coming soon. v1 ships with mockups while we
-          finalize the App Store assets.
+          High-fidelity mockups now; real product captures land in the next
+          update.
         </p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-        {['Sales dashboard', 'Install job', 'Commissions', 'Operations'].map((label, i) => (
-          <div class="aspect-[9/19] rounded-3xl border border-brand-line bg-gradient-to-b from-brand-surface to-brand-paper p-1 shadow-2xl shadow-black/40">
-            <div class="h-full rounded-[1.4rem] border border-brand-line bg-brand-paper/80 flex flex-col items-center justify-center p-4 text-center">
-              <div class="w-10 h-10 rounded-full bg-brand-primary/15 text-brand-primary flex items-center justify-center mb-3 font-mono text-xs">
-                0{i + 1}
-              </div>
-              <p class="text-xs uppercase tracking-[0.22em] text-brand-muted">
-                {label}
-              </p>
+      <div class="grid gap-10 md:gap-14 md:grid-cols-2 items-start">
+        <div>
+          <MockupFrame title="Dashboard" subtitle="Sales · June" size="md">
+            <div class="grid grid-cols-3 gap-2">
+              <KPICard label="Month" value="$12.4k" trend="24%" accent size="sm" />
+              <KPICard label="Lifetime" value="$184k" size="sm" />
+              <KPICard label="Pending" value="$5.2k" size="sm" />
             </div>
-          </div>
-        ))}
+            <BarChart data={earningsBars} title="Last 6 months" />
+          </MockupFrame>
+          <p class="mt-6 text-center text-sm text-brand-muted">
+            Sales reps see commissions in real time.
+          </p>
+        </div>
+        <div>
+          <MockupFrame title="Job · Hernandez" subtitle="Install · Photos" size="md">
+            <PhotoChecklist
+              title="Required photos"
+              items={[
+                { label: 'Roof', done: true },
+                { label: 'Panel', done: true },
+                { label: 'Attic', done: true },
+                { label: 'Mount', done: true },
+                { label: 'Module', done: false },
+                { label: 'Inverter', done: false },
+              ]}
+              columns={3}
+            />
+            <div class="space-y-1.5">
+              <JobCard customer="Patel, R." address="Tempe, AZ" systemKw="6.20 kW" status="open" photosDone={0} photosTotal={8} />
+            </div>
+          </MockupFrame>
+          <p class="mt-6 text-center text-sm text-brand-muted">
+            Crews run jobs from a single screen.
+          </p>
+        </div>
       </div>
     </div>
   </section>

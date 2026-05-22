@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  current: string;
+  target: string;
+  percent: number;
+  category?: string;
+}
+const { title, current, target, percent, category } = Astro.props;
+const clamped = Math.max(0, Math.min(100, percent));
+const isComplete = clamped >= 100;
+---
+
+<div class="rounded-xl border border-zinc-700/50 bg-zinc-800/60 p-3 backdrop-blur">
+  <div class="flex items-baseline justify-between mb-1.5">
+    <div>
+      {category && (
+        <p class="text-[9px] uppercase tracking-wider text-orange-400 font-medium mb-0.5">
+          {category}
+        </p>
+      )}
+      <p class="text-[12px] font-semibold text-zinc-100 leading-tight">{title}</p>
+    </div>
+    <span class={`text-[11px] font-mono tabular-nums font-semibold ${isComplete ? 'text-emerald-400' : 'text-orange-400'}`}>
+      {clamped}%
+    </span>
+  </div>
+  <div class="h-1.5 rounded-full bg-zinc-700/60 overflow-hidden">
+    <div
+      class={`h-full rounded-full ${isComplete ? 'bg-emerald-500' : 'bg-gradient-to-r from-orange-500 to-orange-400'}`}
+      style={`width:${clamped}%;`}
+    ></div>
+  </div>
+  <p class="text-[10px] text-zinc-500 mt-1.5 font-mono tabular-nums">
+    {current} <span class="text-zinc-600">of</span> {target}
+  </p>
+</div>

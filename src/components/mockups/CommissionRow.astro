@@ -1,0 +1,53 @@
+---
+import StatusBadge from './StatusBadge.astro';
+
+interface Props {
+  customer: string;
+  systemKw?: string;
+  ppw?: string;
+  amount: string;
+  status: 'paid' | 'pending' | 'active' | 'cancelled' | 'review';
+  statusLabel?: string;
+  date?: string;
+}
+const {
+  customer,
+  systemKw,
+  ppw,
+  amount,
+  status,
+  statusLabel,
+  date,
+} = Astro.props;
+
+const defaultLabels: Record<NonNullable<Props['status']>, string> = {
+  paid: 'Paid',
+  pending: 'Pending',
+  active: 'Active',
+  cancelled: 'Cancelled',
+  review: 'Review',
+};
+---
+
+<div class="rounded-lg border border-zinc-700/50 bg-zinc-800/60 px-3 py-2.5 flex items-center justify-between gap-2 backdrop-blur">
+  <div class="min-w-0 flex-1">
+    <p class="text-[12px] font-semibold text-zinc-100 truncate">{customer}</p>
+    <p class="text-[10px] text-zinc-500 truncate font-mono tabular-nums">
+      {systemKw && <span>{systemKw}</span>}
+      {systemKw && ppw && <span class="mx-1">·</span>}
+      {ppw && <span>{ppw}</span>}
+      {date && (
+        <>
+          {(systemKw || ppw) && <span class="mx-1">·</span>}
+          <span>{date}</span>
+        </>
+      )}
+    </p>
+  </div>
+  <div class="flex items-center gap-2 flex-shrink-0">
+    <span class="text-[13px] font-semibold text-orange-400 font-mono tabular-nums">
+      {amount}
+    </span>
+    <StatusBadge label={statusLabel ?? defaultLabels[status]} tone={status} />
+  </div>
+</div>

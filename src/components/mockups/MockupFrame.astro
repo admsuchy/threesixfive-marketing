@@ -1,0 +1,61 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  size?: 'sm' | 'md' | 'lg' | 'full';
+  showBattery?: boolean;
+  class?: string;
+}
+const {
+  title = 'Dashboard',
+  subtitle,
+  size = 'md',
+  showBattery = true,
+  class: className = '',
+} = Astro.props;
+
+const widths = {
+  sm: 'max-w-[260px]',
+  md: 'max-w-[340px]',
+  lg: 'max-w-[400px]',
+  full: 'w-full',
+};
+---
+
+<div class={`${widths[size]} mx-auto ${className}`}>
+  <!-- Phone bezel -->
+  <div class="relative rounded-[2.4rem] border border-zinc-700/70 bg-zinc-950 p-1.5 shadow-2xl shadow-black/60">
+    <!-- Screen -->
+    <div class="relative rounded-[2rem] overflow-hidden bg-zinc-900 border border-zinc-800">
+      <!-- Status bar -->
+      <div class="relative h-7 px-5 flex items-center justify-between text-[10px] text-zinc-400 bg-zinc-950/80 backdrop-blur">
+        <span class="font-mono tabular-nums">9:41</span>
+        <div class="absolute left-1/2 top-1 -translate-x-1/2 w-20 h-4 rounded-full bg-black"></div>
+        {showBattery && (
+          <div class="flex items-center gap-1">
+            <svg width="12" height="8" viewBox="0 0 24 16" fill="none" aria-hidden="true">
+              <path d="M2 4h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H2z" fill="currentColor" />
+              <rect x="19" y="6" width="2" height="4" rx="0.5" fill="currentColor" />
+            </svg>
+          </div>
+        )}
+      </div>
+
+      <!-- Title bar -->
+      <div class="px-5 pt-3 pb-2 flex items-center justify-between">
+        <div>
+          <h4 class="text-[15px] font-semibold text-zinc-100 leading-tight">{title}</h4>
+          {subtitle && <p class="text-[11px] text-zinc-500 mt-0.5">{subtitle}</p>}
+        </div>
+        <div class="w-7 h-7 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center">
+          <span class="text-[11px] font-bold text-orange-400">A</span>
+        </div>
+      </div>
+
+      <!-- Screen body -->
+      <div class="px-4 pb-5 pt-2 space-y-3">
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>

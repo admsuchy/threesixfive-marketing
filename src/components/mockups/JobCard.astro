@@ -1,0 +1,58 @@
+---
+import StatusBadge from './StatusBadge.astro';
+
+interface Props {
+  customer: string;
+  address: string;
+  systemKw: string;
+  status: 'open' | 'photos' | 'review' | 'paid' | 'cancelled';
+  statusLabel?: string;
+  photosDone?: number;
+  photosTotal?: number;
+}
+const {
+  customer,
+  address,
+  systemKw,
+  status,
+  statusLabel,
+  photosDone = 0,
+  photosTotal = 0,
+} = Astro.props;
+
+const defaultLabels: Record<NonNullable<Props['status']>, string> = {
+  open: 'Open',
+  photos: 'Photos',
+  review: 'In Review',
+  paid: 'Paid',
+  cancelled: 'Cancelled',
+};
+
+const pct = photosTotal > 0 ? Math.round((photosDone / photosTotal) * 100) : 0;
+---
+
+<div class="rounded-xl border border-zinc-700/50 bg-zinc-800/60 p-3 backdrop-blur">
+  <div class="flex items-start justify-between gap-2 mb-1.5">
+    <div class="min-w-0 flex-1">
+      <p class="text-[12px] font-semibold text-zinc-100 truncate">{customer}</p>
+      <p class="text-[10px] text-zinc-500 truncate">{address}</p>
+    </div>
+    <StatusBadge label={statusLabel ?? defaultLabels[status]} tone={status} />
+  </div>
+  <div class="flex items-center justify-between mt-2">
+    <p class="text-[10px] text-zinc-400 font-mono tabular-nums">{systemKw}</p>
+    {photosTotal > 0 && (
+      <div class="flex items-center gap-1.5">
+        <div class="w-14 h-1 rounded-full bg-zinc-700/70 overflow-hidden">
+          <div
+            class="h-full bg-orange-500 rounded-full"
+            style={`width:${pct}%;`}
+          ></div>
+        </div>
+        <span class="text-[10px] text-zinc-500 font-mono tabular-nums">
+          {photosDone}/{photosTotal}
+        </span>
+      </div>
+    )}
+  </div>
+</div>

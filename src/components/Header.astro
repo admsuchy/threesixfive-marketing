@@ -4,9 +4,8 @@ import Logo from './Logo.astro';
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 const navLinks = [
-  { href: '/#for-sales', label: 'For Sales' },
-  { href: '/#for-install', label: 'For Install' },
-  { href: '/#for-ops', label: 'For Ops' },
+  { href: '/sales/', label: 'For Sales' },
+  { href: '/install/', label: 'For Install' },
   { href: '/support/', label: 'Support' },
 ];
 
@@ -36,7 +35,7 @@ function isActive(href: string) {
         </a>
       ))}
       <a
-        href="/#get-the-app"
+        href="#get-the-app"
         class="inline-flex items-center justify-center rounded-full bg-brand-primary text-black px-5 py-2 text-sm font-semibold hover:bg-brand-primaryDark hover:text-white transition-colors"
       >
         Get the app
@@ -75,7 +74,7 @@ function isActive(href: string) {
         </a>
       ))}
       <a
-        href="/#get-the-app"
+        href="#get-the-app"
         class="mt-2 inline-flex items-center justify-center rounded-full bg-brand-primary text-black px-5 py-3 text-sm font-semibold"
       >
         Get the app

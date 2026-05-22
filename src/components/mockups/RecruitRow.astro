@@ -1,0 +1,53 @@
+---
+import StatusBadge from './StatusBadge.astro';
+
+interface Props {
+  name: string;
+  role: string;
+  status: 'active' | 'pending' | 'cancelled';
+  statusLabel?: string;
+  onboarding?: number;
+}
+const {
+  name,
+  role,
+  status,
+  statusLabel,
+  onboarding = 0,
+} = Astro.props;
+
+const defaultLabels: Record<NonNullable<Props['status']>, string> = {
+  active: 'Active',
+  pending: 'Invited',
+  cancelled: 'Declined',
+};
+
+const initials = name
+  .split(' ')
+  .map((n) => n[0])
+  .slice(0, 2)
+  .join('')
+  .toUpperCase();
+---
+
+<div class="rounded-lg border border-zinc-700/50 bg-zinc-800/60 p-2.5 flex items-center gap-2.5 backdrop-blur">
+  <div class="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-black">
+    {initials}
+  </div>
+  <div class="min-w-0 flex-1">
+    <div class="flex items-center justify-between gap-2 mb-1">
+      <p class="text-[12px] font-semibold text-zinc-100 truncate">{name}</p>
+      <StatusBadge label={statusLabel ?? defaultLabels[status]} tone={status} />
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[10px] text-zinc-500">{role}</span>
+      <div class="flex-1 h-1 rounded-full bg-zinc-700/70 overflow-hidden">
+        <div
+          class="h-full bg-orange-500 rounded-full"
+          style={`width:${Math.max(0, Math.min(100, onboarding))}%;`}
+        ></div>
+      </div>
+      <span class="text-[10px] text-zinc-500 font-mono tabular-nums">{onboarding}%</span>
+    </div>
+  </div>
+</div>

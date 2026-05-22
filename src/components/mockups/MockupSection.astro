@@ -1,0 +1,31 @@
+---
+interface Props {
+  caption?: string;
+  label?: string;
+  align?: 'left' | 'center';
+  class?: string;
+}
+const {
+  caption,
+  label = 'Preview',
+  align = 'center',
+  class: className = '',
+} = Astro.props;
+---
+
+<figure class={`${align === 'center' ? 'text-center mx-auto' : 'text-left'} ${className}`}>
+  <div class="relative inline-block w-full">
+    <span
+      class="absolute -top-3 left-1/2 -translate-x-1/2 z-10 inline-flex items-center gap-1 rounded-full border border-orange-500/30 bg-zinc-950/90 px-2.5 py-0.5 text-[9px] font-medium uppercase tracking-[0.18em] text-orange-400"
+    >
+      <span class="w-1 h-1 rounded-full bg-orange-400"></span>
+      {label}
+    </span>
+    <slot />
+  </div>
+  {caption && (
+    <figcaption class="mt-5 text-sm text-brand-muted max-w-md mx-auto leading-relaxed">
+      {caption}
+    </figcaption>
+  )}
+</figure>

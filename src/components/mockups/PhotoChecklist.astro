@@ -1,0 +1,52 @@
+---
+interface PhotoItem {
+  label: string;
+  done?: boolean;
+}
+interface Props {
+  items: PhotoItem[];
+  columns?: 2 | 3;
+  title?: string;
+}
+const { items, columns = 3, title } = Astro.props;
+const grid = columns === 2 ? 'grid-cols-2' : 'grid-cols-3';
+---
+
+<div class="rounded-xl border border-zinc-700/50 bg-zinc-800/60 p-3 backdrop-blur">
+  {title && (
+    <div class="flex items-center justify-between mb-2">
+      <p class="text-[10px] uppercase tracking-wider text-zinc-500 font-medium">
+        {title}
+      </p>
+      <p class="text-[10px] text-emerald-400 font-mono tabular-nums font-medium">
+        {items.filter((i) => i.done).length}/{items.length}
+      </p>
+    </div>
+  )}
+  <div class={`grid ${grid} gap-2`}>
+    {items.map((item) => (
+      <div
+        class={`relative aspect-square rounded-lg border ${
+          item.done
+            ? 'border-emerald-500/40 bg-emerald-500/10'
+            : 'border-zinc-700/60 bg-zinc-900/60 border-dashed'
+        } flex flex-col items-center justify-center p-1.5 text-center`}
+      >
+        {item.done ? (
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        ) : (
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="6" width="18" height="14" rx="2"/>
+            <circle cx="12" cy="13" r="3"/>
+            <path d="M8 6l2-2h4l2 2"/>
+          </svg>
+        )}
+        <span class={`mt-1 text-[8px] leading-tight ${item.done ? 'text-emerald-300' : 'text-zinc-500'}`}>
+          {item.label}
+        </span>
+      </div>
+    ))}
+  </div>
+</div>
