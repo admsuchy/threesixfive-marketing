@@ -2,32 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import CTAButton from '../components/CTAButton.astro';
 import SectionEyebrow from '../components/SectionEyebrow.astro';
-import MockupFrame from '../components/mockups/MockupFrame.astro';
 import MockupSection from '../components/mockups/MockupSection.astro';
-import KPICard from '../components/mockups/KPICard.astro';
-import BarChart from '../components/mockups/BarChart.astro';
-import JobCard from '../components/mockups/JobCard.astro';
-import PhotoChecklist from '../components/mockups/PhotoChecklist.astro';
-import CommissionRow from '../components/mockups/CommissionRow.astro';
-import StatusBadge from '../components/mockups/StatusBadge.astro';
-
-const photoItems = [
-  { label: 'Roof before', done: true },
-  { label: 'Attic before', done: true },
-  { label: 'Main panel', done: true },
-  { label: 'Mount layout', done: true },
-  { label: 'Module install', done: false },
-  { label: 'Inverter', done: false },
-];
-
-const jobsBar = [
-  { label: 'MON', value: 4 },
-  { label: 'TUE', value: 6 },
-  { label: 'WED', value: 3 },
-  { label: 'THU', value: 7 },
-  { label: 'FRI', value: 5 },
-  { label: 'SAT', value: 2 },
-];
+import RealScreenshot from '../components/RealScreenshot.astro';
 ---
 
 <Layout
@@ -72,20 +48,11 @@ const jobsBar = [
         </div>
 
         <div class="hidden md:block animate-fade-up" style="animation-delay:120ms">
-          <MockupFrame title="Job · Hernandez" subtitle="8.45 kW · Phoenix, AZ" size="md">
-            <div class="flex items-center justify-between rounded-lg bg-zinc-800/60 border border-zinc-700/50 px-3 py-2">
-              <div>
-                <p class="text-[10px] uppercase tracking-wider text-zinc-500">Job status</p>
-                <p class="text-[12px] font-semibold text-zinc-100">Photos in progress</p>
-              </div>
-              <StatusBadge label="Photos" tone="photos" size="sm" />
-            </div>
-            <PhotoChecklist title="Required photos" items={photoItems} columns={3} />
-            <div class="space-y-1.5">
-              <CommissionRow customer="Pre-wire pay" amount="$320" status="paid" statusLabel="Logged" />
-              <CommissionRow customer="Install day pay" amount="$650" status="pending" statusLabel="Pending" />
-            </div>
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/install-job-detail.png"
+            alt="365 install job detail — Hernandez, Jane in Phoenix, AZ with photo checklist and crew pay."
+            size="md"
+          />
         </div>
       </div>
     </div>
@@ -93,9 +60,11 @@ const jobsBar = [
 
   <!-- HERO MOCKUP CAPTION (mobile only) -->
   <section class="md:hidden container-prose pb-12">
-    <MockupFrame title="Job · Hernandez" subtitle="8.45 kW · Phoenix" size="sm">
-      <PhotoChecklist title="Required photos" items={photoItems} columns={3} />
-    </MockupFrame>
+    <RealScreenshot
+      src="/screenshots/install-job-detail.png"
+      alt="365 install job detail — Hernandez."
+      size="sm"
+    />
     <p class="mt-6 text-center text-sm text-brand-muted">
       Open a job, snap required photos, mark steps done, hand off.
     </p>
@@ -125,14 +94,11 @@ const jobsBar = [
           </ul>
         </div>
         <MockupSection caption="The week, as a stack of cards.">
-          <MockupFrame title="My Jobs" subtitle="This week · 5 active" size="md">
-            <div class="space-y-2">
-              <JobCard customer="Hernandez, Jane" address="3141 Camelback Rd, Phoenix" systemKw="8.45 kW" status="photos" photosDone={4} photosTotal={6} />
-              <JobCard customer="Patel, Rohan" address="847 Acacia Ln, Tempe" systemKw="6.20 kW" status="open" photosDone={0} photosTotal={8} />
-              <JobCard customer="Nguyen, Lin" address="22 Sunset Dr, Mesa" systemKw="9.80 kW" status="review" statusLabel="In Review" photosDone={8} photosTotal={8} />
-              <JobCard customer="Brooks, Mike" address="105 Maple St, Chandler" systemKw="7.15 kW" status="paid" photosDone={8} photosTotal={8} />
-            </div>
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/install-jobs-list.png"
+            alt="365 install jobs list — six AZ jobs with mixed status badges."
+            size="md"
+          />
         </MockupSection>
       </div>
     </div>
@@ -143,26 +109,11 @@ const jobsBar = [
     <div class="container-prose py-20 md:py-28">
       <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
         <MockupSection class="md:order-1 order-2" caption="Native iOS &amp; Android camera. Photos checked off the second they're taken.">
-          <MockupFrame title="Photo Checklist" subtitle="Hernandez · 4 of 6" size="md">
-            <PhotoChecklist
-              title="Pre-install"
-              items={[
-                { label: 'Roof before', done: true },
-                { label: 'Attic before', done: true },
-                { label: 'Main panel', done: true },
-              ]}
-              columns={3}
-            />
-            <PhotoChecklist
-              title="Install day"
-              items={[
-                { label: 'Mount layout', done: true },
-                { label: 'Module install', done: false },
-                { label: 'Inverter', done: false },
-              ]}
-              columns={3}
-            />
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/install-job-detail-photos.png"
+            alt="365 photo checklist — required-photo categories with a real roof install shot."
+            size="md"
+          />
         </MockupSection>
         <div class="md:order-2 order-1">
           <SectionEyebrow label="Required-photo checklists" number="03" />
@@ -186,7 +137,7 @@ const jobsBar = [
     </div>
   </section>
 
-  <!-- FEATURE: PAY YOU CAN SEE -->
+  <!-- FEATURE: NOTIFICATIONS / STAY IN SYNC -->
   <section class="hairline-top">
     <div class="container-prose py-20 md:py-28">
       <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
@@ -197,55 +148,23 @@ const jobsBar = [
             <span class="accent-cursive text-brand-primary text-[1.5em]">accounted for.</span>
           </h2>
           <p class="text-base md:text-lg text-brand-muted leading-relaxed mb-6">
-            Toggle between "By Job" and "By Week." See exactly which jobs
-            paid out, which are pending, and which week is still open for
-            edits. No more chasing the office for an explanation.
+            The second a commission posts, a payroll period locks, or a
+            crew member's job changes hands — 365 tells the whole team.
+            Pay updates, job assignments, and photo reviews arrive as
+            push notifications, so nobody's chasing the office for status.
           </p>
           <ul class="space-y-2 text-sm text-brand-muted">
-            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>By Job &middot; By Week toggle with running totals</span></li>
-            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Locked / unlocked week badges so you know what's final</span></li>
-            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Tap any line to see the pay rule that fired</span></li>
+            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Commission paid, payroll locked, photos submitted — all pushed</span></li>
+            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Read / unread filters so the bell stays meaningful</span></li>
+            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Tap any item to jump straight to the underlying job or pay run</span></li>
           </ul>
         </div>
-        <MockupSection caption="Crew pay, on the same screen the office runs payroll from.">
-          <MockupFrame title="My Pay" subtitle="June · $4,820 paid" size="md">
-            <div class="grid grid-cols-2 gap-1 rounded-lg bg-zinc-900/60 border border-zinc-700/50 p-1">
-              <button class="rounded-md bg-orange-500 text-black text-[11px] font-semibold py-1.5">By Week</button>
-              <button class="rounded-md text-zinc-400 text-[11px] font-medium py-1.5">By Job</button>
-            </div>
-            <div class="space-y-1.5">
-              <div class="flex items-center justify-between rounded-lg border border-zinc-700/50 bg-zinc-800/60 px-3 py-2">
-                <div>
-                  <p class="text-[11px] font-semibold text-zinc-100">Wk 23 &middot; Jun 1–7</p>
-                  <p class="text-[10px] text-zinc-500">4 jobs · 12 line items</p>
-                </div>
-                <div class="text-right">
-                  <p class="text-[13px] font-semibold text-orange-400 font-mono tabular-nums">$1,840</p>
-                  <StatusBadge label="Paid" tone="paid" />
-                </div>
-              </div>
-              <div class="flex items-center justify-between rounded-lg border border-zinc-700/50 bg-zinc-800/60 px-3 py-2">
-                <div>
-                  <p class="text-[11px] font-semibold text-zinc-100">Wk 24 &middot; Jun 8–14</p>
-                  <p class="text-[10px] text-zinc-500">3 jobs · 9 line items</p>
-                </div>
-                <div class="text-right">
-                  <p class="text-[13px] font-semibold text-orange-400 font-mono tabular-nums">$1,520</p>
-                  <StatusBadge label="Paid" tone="paid" />
-                </div>
-              </div>
-              <div class="flex items-center justify-between rounded-lg border border-orange-500/30 bg-orange-500/5 px-3 py-2">
-                <div>
-                  <p class="text-[11px] font-semibold text-zinc-100">Wk 25 &middot; Jun 15–21</p>
-                  <p class="text-[10px] text-zinc-500">2 jobs · 6 line items</p>
-                </div>
-                <div class="text-right">
-                  <p class="text-[13px] font-semibold text-orange-400 font-mono tabular-nums">$1,460</p>
-                  <StatusBadge label="Open" tone="open" />
-                </div>
-              </div>
-            </div>
-          </MockupFrame>
+        <MockupSection caption="Five updates this week. Three unread.">
+          <RealScreenshot
+            src="/screenshots/install-notifications.png"
+            alt="365 notifications inbox — pay, payroll, and job notifications with unread badges."
+            size="md"
+          />
         </MockupSection>
       </div>
     </div>
@@ -289,18 +208,11 @@ const jobsBar = [
           </ul>
         </div>
         <MockupSection caption="Tuesday morning standup, in one screen.">
-          <MockupFrame title="Operations" subtitle="Phoenix · This week" size="md">
-            <div class="grid grid-cols-3 gap-2">
-              <KPICard label="Active jobs" value="27" accent />
-              <KPICard label="Awaiting photos" value="8" trendDir="down" trend="↓ 3" />
-              <KPICard label="Paid this wk" value="$54k" trend="↑ 12%" />
-            </div>
-            <BarChart data={jobsBar} title="Jobs completed · last 6 days" />
-            <div class="space-y-1.5">
-              <JobCard customer="Reyes, Ana" address="22 Cactus Ln, Mesa" systemKw="10.5 kW" status="review" statusLabel="Review" photosDone={8} photosTotal={8} />
-              <JobCard customer="Walker, Tim" address="9 Ridge Rd, Gilbert" systemKw="11.2 kW" status="photos" photosDone={5} photosTotal={9} />
-            </div>
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/install-ops-dashboard.png"
+            alt="365 operations dashboard — Crew Leads, Open Jobs, Awaiting Review, Total Paid."
+            size="md"
+          />
         </MockupSection>
       </div>
     </div>
@@ -311,20 +223,11 @@ const jobsBar = [
     <div class="container-prose py-20 md:py-28">
       <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
         <MockupSection class="md:order-1 order-2" caption="Lock the week. Pay the team. Done.">
-          <MockupFrame title="Payroll" subtitle="Wk 24 · $12,840 to pay" size="md">
-            <div class="grid grid-cols-3 gap-2">
-              <KPICard label="Crew" value="9" />
-              <KPICard label="Line items" value="38" />
-              <KPICard label="Total" value="$12.8k" accent />
-            </div>
-            <div class="space-y-1.5">
-              <CommissionRow customer="Castillo, Diego" amount="$2,140" status="paid" statusLabel="Locked" date="Wk 24" />
-              <CommissionRow customer="O'Brien, Pat" amount="$1,860" status="paid" statusLabel="Locked" date="Wk 24" />
-              <CommissionRow customer="Singh, Aman" amount="$1,720" status="pending" statusLabel="Review" date="Wk 24" />
-              <CommissionRow customer="Tran, Kevin" amount="$1,540" status="pending" statusLabel="Review" date="Wk 24" />
-              <CommissionRow customer="Diaz, Luis" amount="$1,420" status="pending" statusLabel="Review" date="Wk 24" />
-            </div>
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/install-payroll.png"
+            alt="365 payroll — three weeks with locked + open status and crew totals."
+            size="md"
+          />
         </MockupSection>
         <div class="md:order-2 order-1">
           <SectionEyebrow label="Payroll without spreadsheets" number="06" />

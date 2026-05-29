@@ -1,0 +1,26 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  size?: 'sm' | 'md' | 'lg' | 'full';
+  class?: string;
+}
+const { src, alt, size = 'md', class: className = '' } = Astro.props;
+
+const widths = {
+  sm: 'max-w-[260px]',
+  md: 'max-w-[340px]',
+  lg: 'max-w-[400px]',
+  full: 'w-full',
+};
+---
+<div class={`${widths[size]} mx-auto ${className}`}>
+  <div class="relative rounded-[2.4rem] border border-zinc-700/70 bg-zinc-950 p-1.5 shadow-2xl shadow-black/60">
+    <img
+      src={src}
+      alt={alt}
+      class="rounded-[2rem] w-full h-auto block"
+      loading="lazy"
+    />
+  </div>
+</div>

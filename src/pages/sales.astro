@@ -2,25 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import CTAButton from '../components/CTAButton.astro';
 import SectionEyebrow from '../components/SectionEyebrow.astro';
-import MockupFrame from '../components/mockups/MockupFrame.astro';
 import MockupSection from '../components/mockups/MockupSection.astro';
-import KPICard from '../components/mockups/KPICard.astro';
-import BarChart from '../components/mockups/BarChart.astro';
-import AreaChart from '../components/mockups/AreaChart.astro';
-import GoalProgress from '../components/mockups/GoalProgress.astro';
-import CommissionRow from '../components/mockups/CommissionRow.astro';
-import RecruitRow from '../components/mockups/RecruitRow.astro';
-
-const earningsBars = [
-  { label: 'JAN', value: 8 },
-  { label: 'FEB', value: 14 },
-  { label: 'MAR', value: 11 },
-  { label: 'APR', value: 17 },
-  { label: 'MAY', value: 22 },
-  { label: 'JUN', value: 19 },
-];
-
-const trendArea = [22, 28, 26, 35, 32, 41, 48, 44, 52, 58, 55, 64];
+import RealScreenshot from '../components/RealScreenshot.astro';
 ---
 
 <Layout
@@ -64,18 +47,11 @@ const trendArea = [22, 28, 26, 35, 32, 41, 48, 44, 52, 58, 55, 64];
         </div>
 
         <div class="hidden md:block animate-fade-up" style="animation-delay:120ms">
-          <MockupFrame title="Dashboard" subtitle="Monthly earnings" size="md">
-            <div class="grid grid-cols-3 gap-2">
-              <KPICard label="This Month" value="$12,480" trend="24%" accent />
-              <KPICard label="Lifetime" value="$184k" />
-              <KPICard label="Pending" value="$5,200" trendDir="flat" trend="3 deals" />
-            </div>
-            <BarChart data={earningsBars} title="Last 6 months" />
-            <div class="space-y-1.5">
-              <CommissionRow customer="Hernandez, J." systemKw="8.45 kW" amount="$4,225" status="paid" />
-              <CommissionRow customer="Patel, R." systemKw="6.20 kW" amount="$3,100" status="pending" />
-            </div>
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/sales-admin-dashboard.png"
+            alt="365 admin dashboard — Total Commissions $63,750 with team activity KPIs."
+            size="md"
+          />
         </div>
       </div>
     </div>
@@ -83,14 +59,11 @@ const trendArea = [22, 28, 26, 35, 32, 41, 48, 44, 52, 58, 55, 64];
 
   <!-- HERO MOCKUP CAPTION (mobile only — desktop shows mockup inline) -->
   <section class="md:hidden container-prose pb-12">
-    <MockupFrame title="Dashboard" subtitle="Monthly earnings" size="sm">
-      <div class="grid grid-cols-3 gap-1.5">
-        <KPICard label="Month" value="$12.4k" trend="24%" accent size="sm" />
-        <KPICard label="Lifetime" value="$184k" size="sm" />
-        <KPICard label="Pending" value="$5.2k" size="sm" />
-      </div>
-      <BarChart data={earningsBars} title="Last 6 months" />
-    </MockupFrame>
+    <RealScreenshot
+      src="/screenshots/sales-admin-dashboard.png"
+      alt="365 admin dashboard — team management overview with KPIs."
+      size="sm"
+    />
     <p class="mt-6 text-center text-sm text-brand-muted">
       Real-time commissions. Every account, every week, every status.
     </p>
@@ -120,15 +93,11 @@ const trendArea = [22, 28, 26, 35, 32, 41, 48, 44, 52, 58, 55, 64];
           </ul>
         </div>
         <MockupSection caption="A live feed of every account you sold.">
-          <MockupFrame title="Commissions" subtitle="June 2026" size="md">
-            <div class="space-y-2">
-              <CommissionRow customer="Hernandez, Jane" systemKw="8.45 kW" ppw="$3.10" amount="$4,225" status="paid" date="06/02" />
-              <CommissionRow customer="Patel, Rohan" systemKw="6.20 kW" ppw="$3.05" amount="$3,100" status="pending" date="06/08" />
-              <CommissionRow customer="Nguyen, Lin" systemKw="9.80 kW" ppw="$3.20" amount="$4,900" status="review" statusLabel="In Review" date="06/14" />
-              <CommissionRow customer="Brooks, Mike" systemKw="7.15 kW" ppw="$2.95" amount="$3,575" status="paid" date="06/19" />
-              <CommissionRow customer="Reyes, Ana" systemKw="10.5 kW" ppw="$3.15" amount="$5,250" status="pending" date="06/22" />
-            </div>
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/sales-commissions.png"
+            alt="365 commissions — All Company Commissions table with paid + pending status."
+            size="md"
+          />
         </MockupSection>
       </div>
     </div>
@@ -139,38 +108,11 @@ const trendArea = [22, 28, 26, 35, 32, 41, 48, 44, 52, 58, 55, 64];
     <div class="container-prose py-20 md:py-28">
       <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
         <MockupSection class="md:order-1 order-2" caption="Set the target. Watch the bar fill.">
-          <MockupFrame title="Goals" subtitle="Active · June" size="md">
-            <div class="space-y-2.5">
-              <GoalProgress
-                category="Commissions"
-                title="Earn $50,000 in June"
-                current="$34,120"
-                target="$50,000"
-                percent={68}
-              />
-              <GoalProgress
-                category="Installs"
-                title="Close 12 systems"
-                current="9"
-                target="12"
-                percent={75}
-              />
-              <GoalProgress
-                category="Recruiting"
-                title="Onboard 5 new reps"
-                current="2"
-                target="5"
-                percent={40}
-              />
-              <GoalProgress
-                category="Personal"
-                title="Save for new truck"
-                current="$18,000"
-                target="$18,000"
-                percent={100}
-              />
-            </div>
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/sales-goals.png"
+            alt="365 goals — Commission, Install, and Recruiting goals with progress bars."
+            size="md"
+          />
         </MockupSection>
         <div class="md:order-2 order-1">
           <SectionEyebrow label="Goals that adapt" number="03" />
@@ -217,55 +159,43 @@ const trendArea = [22, 28, 26, 35, 32, 41, 48, 44, 52, 58, 55, 64];
           </ul>
         </div>
         <MockupSection caption="Track every recruit from invite to first deal.">
-          <MockupFrame title="Recruiting" subtitle="My team · 8 active" size="md">
-            <div class="grid grid-cols-3 gap-2">
-              <KPICard label="Active" value="8" trend="2 this mo" />
-              <KPICard label="Invited" value="14" accent />
-              <KPICard label="Conversion" value="57%" trend="↑ 6%" />
-            </div>
-            <div class="space-y-1.5">
-              <RecruitRow name="Marco Vega" role="Sales Rep" status="active" onboarding={100} />
-              <RecruitRow name="Olivia Brown" role="Sales Rep" status="active" onboarding={85} />
-              <RecruitRow name="Daniel Kim" role="Setter" status="pending" statusLabel="Onboarding" onboarding={45} />
-              <RecruitRow name="Sara Lopez" role="Sales Rep" status="pending" statusLabel="Invited" onboarding={10} />
-            </div>
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/sales-recruits.png"
+            alt="365 recruiting — My Recruits with onboarding progress badges."
+            size="md"
+          />
         </MockupSection>
       </div>
     </div>
   </section>
 
-  <!-- FEATURE: ANALYTICS -->
+  <!-- FEATURE: ANALYTICS / INVITES -->
   <section class="hairline-top">
     <div class="container-prose py-20 md:py-28">
       <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
         <MockupSection class="md:order-1 order-2" caption="Know your numbers cold.">
-          <MockupFrame title="Analytics" subtitle="Last 12 weeks" size="md">
-            <AreaChart data={trendArea} title="Commission trend" caption="↑ 32% MoM" />
-            <div class="grid grid-cols-2 gap-2">
-              <KPICard label="Avg PPW" value="$3.08" trend="↑ $0.07" />
-              <KPICard label="Close rate" value="38%" trend="↑ 4%" accent />
-              <KPICard label="Avg system" value="7.9 kW" />
-              <KPICard label="Top zip" value="85048" trendDir="flat" trend="9 deals" />
-            </div>
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/sales-invites.png"
+            alt="365 invites — recipient list with role and status badges."
+            size="md"
+          />
         </MockupSection>
         <div class="md:order-2 order-1">
-          <SectionEyebrow label="Analytics that matter" number="05" />
+          <SectionEyebrow label="Funnel you can act on" number="05" />
           <h2 class="text-4xl md:text-5xl mb-6 text-brand-ink">
-            The numbers that
-            <span class="accent-cursive text-brand-primary text-[1.5em]">actually move</span>
-            your paycheck.
+            From invite to
+            <span class="accent-cursive text-brand-primary text-[1.5em]">first deal,</span>
+            tracked.
           </h2>
           <p class="text-base md:text-lg text-brand-muted leading-relaxed mb-6">
-            Average PPW, close rate, system size, top zip codes. The metrics
-            that tell you where to spend your next door knock — not vanity
-            charts you'll never act on.
+            Every invite you send shows up here. Who tapped the link, who
+            started onboarding, who closed their first deal — and where
+            people get stuck. The funnel that actually moves your paycheck.
           </p>
           <ul class="space-y-2 text-sm text-brand-muted">
-            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Commission trend with month-over-month deltas</span></li>
-            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Geographic heatmap of where your deals close</span></li>
-            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Funnel from lead &rarr; signed &rarr; install &rarr; paid</span></li>
+            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Per-invite status: sent, opened, joined, onboarding, active</span></li>
+            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Role tagged on every invite — sales rep, setter, crew lead</span></li>
+            <li class="flex gap-2"><span class="text-brand-primary mt-1">&bull;</span><span>Conversion totals roll up to your monthly goal automatically</span></li>
           </ul>
         </div>
       </div>
