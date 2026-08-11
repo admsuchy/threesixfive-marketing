@@ -2,7 +2,7 @@
 import LegalLayout from '../components/LegalLayout.astro';
 
 const COMPANY = 'Luminate Energy LLC';
-const SUPPORT_EMAIL = 'adamsuchy@luminate.solar';
+const SUPPORT_EMAIL = 'threesixfive@luminate.solar';
 ---
 
 <LegalLayout
@@ -12,7 +12,7 @@ const SUPPORT_EMAIL = 'adamsuchy@luminate.solar';
   eyebrowNumber="01"
   heading="Privacy"
   headingAccent="policy."
-  lastUpdated="May 28, 2026"
+  lastUpdated="August 11, 2026"
 >
   <p>
     {COMPANY} (&ldquo;365,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) provides the 365
@@ -25,10 +25,11 @@ const SUPPORT_EMAIL = 'adamsuchy@luminate.solar';
 
   <h2>1. Contact Info</h2>
   <p>
-    When you sign in we collect your <strong>email address</strong> and
-    <strong> name</strong> from your identity provider (Google or Apple). If you sign
-    in with Apple and choose to hide your email, we receive only the private relay
-    address Apple generates for you.
+    When you create an account or sign in we collect your <strong>email
+    address</strong> and <strong>name</strong>. 365 uses email-based
+    authentication (password or emailed magic link); your password is stored
+    only as a salted hash by our authentication provider and is never visible
+    to us.
   </p>
 
   <h2>2. Identifiers</h2>
@@ -70,14 +71,31 @@ const SUPPORT_EMAIL = 'adamsuchy@luminate.solar';
     settings, and the token will be removed from our records on next sign-in.
   </p>
 
-  <h2>6. Location (Future Feature)</h2>
+  <h2>6. Location</h2>
   <p>
-    A future version of 365 will support <strong>optional background location</strong>
-    for crew leads on active installation routes (drive-time tracking, on-site
-    check-in). This feature is not enabled in the current release. When it ships, it
-    will be opt-in, will display the standard iOS &ldquo;Always Allow&rdquo; prompt
-    with a clear purpose string, and will only collect location while a job is active.
-    We disclose it here in advance to set accurate expectations.
+    365 collects location in two specific, foreground-only moments &mdash; it never
+    tracks your location in the background:
+  </p>
+  <ul>
+    <li>
+      <strong>Time clock punches.</strong> When a worker clocks in or out, the app
+      requests the device&rsquo;s current GPS position (with its accuracy radius) via
+      the browser&rsquo;s standard location prompt and stores it with that punch.
+      Timesheet reviewers at your organization can see the punch location. If you
+      decline the prompt, the punch still records &mdash; it is simply flagged as
+      having no location.
+    </li>
+    <li>
+      <strong>Job photos.</strong> Photos uploaded to a job may carry GPS
+      coordinates (from the capturing device or an imported photo&rsquo;s metadata),
+      which are stored with the photo and visible to teammates who can view the job.
+    </li>
+  </ul>
+  <p>
+    A future release may add <strong>optional</strong> geofenced arrival prompts
+    (&ldquo;you&rsquo;ve arrived on site &mdash; clock in?&rdquo;) in the native
+    mobile app. That feature will be opt-in with the platform&rsquo;s standard
+    location permission prompts, and we will update this policy when it ships.
   </p>
 
   <h2>7. How We Use Your Data</h2>

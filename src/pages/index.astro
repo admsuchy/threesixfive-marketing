@@ -9,6 +9,7 @@ import CommissionRow from '../components/mockups/CommissionRow.astro';
 import JobCard from '../components/mockups/JobCard.astro';
 import PhotoChecklist from '../components/mockups/PhotoChecklist.astro';
 import StatusBadge from '../components/mockups/StatusBadge.astro';
+import RealScreenshot from '../components/RealScreenshot.astro';
 
 const earningsBars = [
   { label: 'JAN', value: 8 },
@@ -29,7 +30,7 @@ const highlights = [
   {
     tag: 'Install',
     title: 'Required-photo checklists',
-    body: 'Native camera, offline-safe, photos auto-tagged to the job.',
+    body: 'Camera opens right in the job. Photos auto-tagged, reviewed by ops in real time.',
     href: '/install/',
   },
   {
@@ -75,38 +76,38 @@ const highlights = [
         </p>
 
         <div id="get-the-app" class="flex flex-wrap items-center gap-3 md:gap-4 animate-fade-up" style="animation-delay:160ms">
-          <CTAButton href="#get-the-app" variant="primary" size="lg">
-            Get on the App Store
+          <CTAButton href="https://threesixfive.app" variant="primary" size="lg">
+            Open the 365 app
           </CTAButton>
-          <CTAButton href="#get-the-app" variant="ghost" size="lg">
-            Get on Google Play
+          <CTAButton href="mailto:threesixfive@luminate.solar" variant="ghost" size="lg">
+            Ask for an invite
           </CTAButton>
         </div>
         <p class="mt-4 text-xs uppercase tracking-[0.22em] text-brand-subtle animate-fade-up" style="animation-delay:220ms">
-          iOS &amp; Android &middot; Coming soon to the stores
+          iPhone &amp; Android &middot; Runs right in your browser
         </p>
       </div>
     </div>
   </section>
 
   <!-- STATS BAND -->
-  <section class="hairline-top hairline-bottom bg-brand-paper/50">
-    <div class="container-prose py-10 md:py-14 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+  <section>
+    <div class="container-prose pb-16 md:pb-24 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
       <div>
-        <div class="display-xl text-4xl md:text-5xl text-brand-ink mb-2">3</div>
-        <div class="text-xs uppercase tracking-widest text-brand-subtle">Roles, one app</div>
+        <div class="display-xl text-3xl md:text-4xl text-brand-ink mb-2">3</div>
+        <div class="text-xs uppercase tracking-[0.22em] text-brand-subtle">Roles, one app</div>
       </div>
       <div>
-        <div class="display-xl text-4xl md:text-5xl text-brand-ink mb-2">6</div>
-        <div class="text-xs uppercase tracking-widest text-brand-subtle">States supported</div>
+        <div class="display-xl text-3xl md:text-4xl text-brand-ink mb-2">Nationwide</div>
+        <div class="text-xs uppercase tracking-[0.22em] text-brand-subtle">Available everywhere</div>
       </div>
       <div>
-        <div class="display-xl text-4xl md:text-5xl text-brand-ink mb-2">$0</div>
-        <div class="text-xs uppercase tracking-widest text-brand-subtle">To install</div>
+        <div class="display-xl text-3xl md:text-4xl text-brand-ink mb-2">$0</div>
+        <div class="text-xs uppercase tracking-[0.22em] text-brand-subtle">To install</div>
       </div>
       <div>
-        <div class="display-xl text-4xl md:text-5xl text-brand-ink mb-2">24/7</div>
-        <div class="text-xs uppercase tracking-widest text-brand-subtle">Sync across devices</div>
+        <div class="display-xl text-3xl md:text-4xl text-brand-ink mb-2">24/7</div>
+        <div class="text-xs uppercase tracking-[0.22em] text-brand-subtle">Sync across devices</div>
       </div>
     </div>
   </section>
@@ -151,46 +152,27 @@ const highlights = [
             A home screen for <span class="accent-cursive text-brand-primary text-[1.5em]">every role.</span>
           </h2>
         </div>
-        <p class="text-sm text-brand-subtle max-w-sm">
-          High-fidelity mockups now; real product captures land in the next
-          update.
-        </p>
       </div>
 
       <div class="grid gap-10 md:gap-14 md:grid-cols-2 items-start">
         <div>
-          <MockupFrame title="Dashboard" subtitle="Sales · June" size="md">
-            <div class="grid grid-cols-3 gap-2">
-              <KPICard label="Month" value="$12.4k" trend="24%" accent size="sm" />
-              <KPICard label="Lifetime" value="$184k" size="sm" />
-              <KPICard label="Pending" value="$5.2k" size="sm" />
-            </div>
-            <BarChart data={earningsBars} title="Last 6 months" />
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/sales-commissions.png"
+            alt="365 commissions — real-time deal-by-deal earnings."
+            size="md"
+          />
           <p class="mt-6 text-center text-sm text-brand-muted">
             Sales reps see commissions in real time.
           </p>
         </div>
         <div>
-          <MockupFrame title="Job · Hernandez" subtitle="Install · Photos" size="md">
-            <PhotoChecklist
-              title="Required photos"
-              items={[
-                { label: 'Roof', done: true },
-                { label: 'Panel', done: true },
-                { label: 'Attic', done: true },
-                { label: 'Mount', done: true },
-                { label: 'Module', done: false },
-                { label: 'Inverter', done: false },
-              ]}
-              columns={3}
-            />
-            <div class="space-y-1.5">
-              <JobCard customer="Patel, R." address="Tempe, AZ" systemKw="6.20 kW" status="open" photosDone={0} photosTotal={8} />
-            </div>
-          </MockupFrame>
+          <RealScreenshot
+            src="/screenshots/ops-sitecam-feed.png"
+            alt="SiteCam — the whole company's install photos, searchable by customer or address."
+            size="md"
+          />
           <p class="mt-6 text-center text-sm text-brand-muted">
-            Crews run jobs from a single screen.
+            SiteCam: every install photo the company has ever taken, searchable.
           </p>
         </div>
       </div>
@@ -371,14 +353,14 @@ const highlights = [
         Ready to <span class="accent-cursive text-brand-primary text-[1.5em]">go pro?</span>
       </h2>
       <p class="text-lg md:text-xl text-brand-muted max-w-xl mx-auto mb-10">
-        365 is free to download. Your installer admin invites you in.
+        365 runs on any phone, right in the browser. Your installer admin invites you in.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4">
-        <CTAButton href="#get-the-app" variant="primary" size="lg">
-          Get on the App Store
+        <CTAButton href="https://threesixfive.app" variant="primary" size="lg">
+          Open the 365 app
         </CTAButton>
-        <CTAButton href="#get-the-app" variant="ghost" size="lg">
-          Get on Google Play
+        <CTAButton href="mailto:threesixfive@luminate.solar" variant="ghost" size="lg">
+          Ask for an invite
         </CTAButton>
       </div>
       <p class="mt-8 text-sm text-brand-subtle">
